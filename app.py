@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 # Mock products
 products = [
-    {"id": "printer-a", "name": "Printer A", "price": 150},
+    {"id": "printer-a", "name": "Printer A", "price": 150, "quantity": 1},
     {"id": "printer-b", "name": "Printer B", "price": 200},
     {"id": "printer-c", "name": "Printer C", "price": 250},
 ]
