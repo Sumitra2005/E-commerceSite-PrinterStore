@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Printer Store</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>🖨️ Printer Store</h1>
+    <div id="products">
+      {% for product in products %}
+      <div>
+        <span>{{ product.name }} - ${{ product.price }}</span>
+        <button class="add" data-id="{{ product.id }}">Add to Cart</button>
+        <button class="remove" data-id="{{ product.id }}">Remove</button>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2>Cart Total: $<span id="cart-total">0</span></h2>
+
+    <script>
+      $(document).ready(function () {
+        $(".add").click(function () {
+          let id = $(this).data("id");
+          $.post("/add_to_cart", { product_id: id }, function (data) {
+            if (data.status === "success") {
+              $("#cart-total").text(data.cart_total);
+              console.log("Added", id);
+            }
+          });
+        });
+
+        $(".remove").click(function () {
+          let id = $(this).data("id");
+          $.post("/remove_from_cart", { product_id: id }, function (data) {
+            if (data.status === "success") {
+              $("#cart-total").text(data.cart_total);
+              console.log("Removed", id);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

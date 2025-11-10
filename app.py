@@ -9,10 +9,10 @@ products = [
     {"id": "printer-c", "name": "Printer C", "price": 250},
 ]
 
-cart = []
+cart = [] 
 
 
-@app.route("/cart", methods=["GET"])
+@app.route("/")
 def index():
  return render_template("index.html", products=products, cart=cart)
 
@@ -38,3 +38,4 @@ def remove_from_cart():
 
 if __name__ == "__main__":
     app.run(debug=True)
+ 
